@@ -5,11 +5,40 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- within layouts/application.html.erb -->
+
+<ul class="nav navbar-nav navbar-right">
+  <li><%= link_to "View Cart", view_order_path %></li>
+
+    <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <% @categories.each do |category| %>
+      <li><%= link_to category.name, categorical_path(category_id: category.id) %></li>
+    <% end %>
+  </ul>
+</li>
+
+<!-- Brands -->
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brands<span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <% @brands.each do |brand| %>
+      <li><%= link_to brand, branding_path(brand: brand) %></li>
+    <% end %>
+      <li><%= link_to 'All', root_path %></li>
+  </ul>
+</li> 
+<!-- End Brands -->  
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+  <%= yield %>
+</div>
   </body>
 </html>
